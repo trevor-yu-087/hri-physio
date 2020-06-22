@@ -12,6 +12,7 @@ set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
 
 set(${LIBRARY_TARGET_NAME}_SRC
     src/streamerCore.cpp
+    src/ringBuffer.cpp
     src/helpers.cpp
 )
 
@@ -20,6 +21,7 @@ set(${LIBRARY_TARGET_NAME}_SRC
 
 set(${LIBRARY_TARGET_NAME}_HDR
     include/HriPhysio/Core/streamerCore.h
+    include/HriPhysio/Core/ringBuffer.h
     include/HriPhysio/helpers.h
 )
 

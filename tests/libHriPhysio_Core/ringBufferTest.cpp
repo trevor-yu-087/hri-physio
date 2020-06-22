@@ -12,19 +12,17 @@
 
 #include <doctest.h>
 
-#include <HriPhysio/Core/streamerCore.h>
+#include <HriPhysio/Core/ringBuffer.h>
 
 TEST_CASE("Successful Test Example") {
-    
-    hriPhysio::Core::StreamerCore testCore;
+
+    hriPhysio::Core::RingBuffer <int> b(10);
 
     int a = 5;
     CHECK(a == 5);
 }
 
 TEST_CASE("Failing Test Examples") {
-
-    hriPhysio::Core::StreamerCore testCore;
 
     CHECK(true == false);
 }
