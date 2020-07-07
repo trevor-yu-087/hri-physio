@@ -14,16 +14,52 @@
 
 #include <HriPhysio/Core/ringBuffer.h>
 
-TEST_CASE("Successful Test Example") {
+TEST_CASE("Test Single enqueue Function and size Function") {
 
-    hriPhysio::Core::RingBuffer <int> b(10);
+    hriPhysio::Core::RingBuffer<int> rb(3);
+    //rb.setWarnings(true);
 
-    int a = 5;
-    CHECK(a == 5);
+    CHECK(rb.size() == 0);
+
+    rb.enqueue(5);
+    CHECK(rb.size() == 1);
+
+    rb.enqueue(3);
+    CHECK(rb.size() == 2);
+
+    rb.enqueue(9);
+    CHECK(rb.size() == 3);
+
+    rb.enqueue(13); //overwrite 5.
+    CHECK(rb.size() == 3);
 }
 
-TEST_CASE("Failing Test Examples") {
+TEST_CASE("Test Single enqueue Function and Single dequeue Function") {
 
-    CHECK(true == false);
+    hriPhysio::Core::RingBuffer<int> rb(3);
+    rb.setWarnings(true);
+    int out;
+
+    rb.enqueue(5);
+    rb.dequeue(out);
+    CHECK(out == 5);
+    CHECK(rb.size() == 0);
+
+    rb.enqueue(3);
+    rb.enqueue(9);
+    rb.enqueue(13);
+    rb.enqueue(22); //overwrites 3.
+    CHECK(rb.size() == 3);
+
+    rb.dequeue(out);
+    CHECK(out == 9);
+    CHECK(rb.size() == 2);
+
+    rb.dequeue(out);
+    CHECK(out == 13);
+    CHECK(rb.size() == 1);
+
+    rb.dequeue(out);
+    CHECK(out == 22);
+    CHECK(rb.size() == 0);
 }
-

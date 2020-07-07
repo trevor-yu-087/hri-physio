@@ -10,6 +10,8 @@
  * ================================================================================
  */
 
+/* Ice this file but don't delete yet...
+
 #include <HriPhysio/Core/ringBuffer.h>
 
 using namespace hriPhysio::Core;
@@ -58,9 +60,15 @@ void RingBuffer<T>::setWarnings(bool value) {
 template <class T> 
 void RingBuffer<T>::resize(const std::size_t length) {
 
+    //-- Lock the mutex to ensure read/write atomicity.
+    lock.lock();
+
     //-- Update length, Update buffer.
     buffer_length = length;
     bufferInit(buffer_length);
+
+    //-- Unlock the mutex and return.
+    lock.unlock();
 
     return;
 }
@@ -68,6 +76,9 @@ void RingBuffer<T>::resize(const std::size_t length) {
 
 template <class T> 
 void RingBuffer<T>::clear() {
+
+    //-- Lock the mutex to ensure read/write atomicity.
+    lock.lock();
 
     //-- Create a ``zeroed`` instance of template type.
     T emptyVar;
@@ -81,6 +92,9 @@ void RingBuffer<T>::clear() {
     buffer_size = 0;
     buffer_head = 0;
     buffer_tail = 0;
+
+    //-- Unlock the mutex and return.
+    lock.unlock();
 
     return; 
 }
@@ -370,14 +384,14 @@ bool RingBuffer<T>::front(T* items, const std::size_t length) {
 template <class T> 
 inline T* RingBuffer<T>::data() {
     //-- get a pointer to the unique_ptr if allocated.
-    return (buffer_length != 0) ? buffer.get() : 0 /* NULL */;
+    return (buffer_length != 0) ? buffer.get() : 0 ;
 }
 
 
 template <class T> 
 inline const T* RingBuffer<T>::data() const {
     //-- get a pointer to the unique_ptr if allocated.
-    return (buffer_length != 0) ? buffer.get() : 0 /* NULL */;
+    return (buffer_length != 0) ? buffer.get() : 0 ;
 }
 
 
@@ -430,3 +444,5 @@ template class RingBuffer<long>;
 template class RingBuffer<double>;
 template class RingBuffer<float>;
 template class RingBuffer<std::size_t>;
+
+*/

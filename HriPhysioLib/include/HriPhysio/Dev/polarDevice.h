@@ -10,22 +10,32 @@
  * ================================================================================
  */
 
-#include <doctest.h>
+#ifndef HRI_PHYSIO_DEV_POLAR_DEVICE_H
+#define HRI_PHYSIO_DEV_POLAR_DEVICE_H
 
-#include <HriPhysio/Core/streamerCore.h>
+#include <iostream>
+#include <memory>
+#include <mutex>
 
-TEST_CASE("Successful Test Example") {
-    
-    hriPhysio::Core::StreamerCore testCore;
+#include <HriPhysio/helpers.h>
 
-    int a = 5;
-    CHECK(a == 5);
+namespace hriPhysio {
+    namespace Dev {
+        class PolarDevice;
+    }
 }
 
-TEST_CASE("Failing Test Examples") {
+class hriPhysio::Dev::PolarDevice {
 
-    hriPhysio::Core::StreamerCore testCore;
+private:
+    int temp;
 
-    CHECK(true == false);
-}
+public:
+    PolarDevice();
 
+private:
+    void tempfunc();
+
+};
+
+#endif /* HRI_PHYSIO_DEV_POLAR_DEVICE_H */

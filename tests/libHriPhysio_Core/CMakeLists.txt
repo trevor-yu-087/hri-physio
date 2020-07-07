@@ -11,8 +11,7 @@ include_directories(../)
 
 set(${TEST_TARGET_NAME}_SRC
     docTestDefine.cpp
-    ringBufferTest.cpp   
-    streamerCoreTest.cpp
+    ringBufferTest.cpp
 )
 
 add_executable(

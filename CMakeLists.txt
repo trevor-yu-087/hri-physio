@@ -192,6 +192,6 @@ icubcontrib_set_default_prefix()
 ############################################################
 
 #add_subdirectory( app )
-#add_subdirectory( modules )
+add_subdirectory( modules )
 
 ############################################################

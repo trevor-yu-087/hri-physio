@@ -10,26 +10,32 @@
  * ================================================================================
  */
 
-#ifndef STREAMER_CORE_H
-#define STREAMER_CORE_H
+#ifndef HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H
+#define HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H
+
+#include <iostream>
+#include <memory>
+#include <mutex>
+
+#include <HriPhysio/helpers.h>
 
 namespace hriPhysio {
-    namespace Core {
-        class StreamerCore;
+    namespace Manager {
+        class PhysioManager;
     }
 }
 
-class hriPhysio::Core::StreamerCore {
+class hriPhysio::Manager::PhysioManager {
 
 private:
     int temp;
 
 public:
-    StreamerCore();
+    PhysioManager();
 
 private:
     void tempfunc();
 
 };
 
-#endif /* STREAMER_CORE_H */
+#endif /* HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H */

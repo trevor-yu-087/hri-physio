@@ -11,8 +11,7 @@ set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
 # List of CPP (source) library files.
 
 set(${LIBRARY_TARGET_NAME}_SRC
-    src/streamerCore.cpp
-    src/ringBuffer.cpp
+    #src/ringBuffer.cpp
     src/helpers.cpp
 )
 
@@ -20,10 +19,47 @@ set(${LIBRARY_TARGET_NAME}_SRC
 # List of HPP (header) library files.
 
 set(${LIBRARY_TARGET_NAME}_HDR
-    include/HriPhysio/Core/streamerCore.h
     include/HriPhysio/Core/ringBuffer.h
+    include/HriPhysio/Dev/deviceInterface.h
+    # #include/HriPhysio/Dev/polarDevice.h          # TODO: uncomment when implementing.
+    # include/HriPhysio/Dev/shimmerDevice.h
+    # #include/HriPhysio/Manager/physioManager.h    # TODO: uncomment when implementing.
+    # #include/HriPhysio/Processing/                # TODO: uncomment when implementing.
+    # #include/HriPhysio/Stream/ros/rosStreamer.h   # TODO: uncomment when implementing.
+    # include/HriPhysio/Stream/yarp/yarpStreamer.h
+    # include/HriPhysio/Stream/streamerInterface.h
+    # #include/HriPhysio/Stream/udpStreamer.h       # TODO: uncomment when implementing.
     include/HriPhysio/helpers.h
 )
+
+############################################################
+
+##
+## TODO: set these up properly and make sure libraries get linked.
+##
+## if( ENABLE_COMPILE_YARP )
+## 
+##     list(APPEND ${LIBRARY_TARGET_NAME}_SRC
+##         src/yarpStreamer.cpp
+##     )
+## 
+##     list(APPEND ${LIBRARY_TARGET_NAME}_HDR
+##         include/HriPhysio/Stream/yarp/yarpStreamer.h
+##     )
+## 
+## endif( ENABLE_COMPILE_YARP )
+## 
+## if( ENABLE_COMPILE_ROS )
+## 
+##     list(APPEND ${LIBRARY_TARGET_NAME}_SRC
+##         src/rosStreamer.cpp
+##     )
+## 
+##     list(APPEND ${LIBRARY_TARGET_NAME}_HDR
+##         include/HriPhysio/Stream/ros/rosStreamer.h
+##     )
+## 
+## endif( ENABLE_COMPILE_ROS )
 
 ############################################################
 

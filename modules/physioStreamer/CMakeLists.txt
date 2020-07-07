@@ -4,11 +4,25 @@
 
 cmake_minimum_required( VERSION 3.12 )
 
-add_subdirectory( libHriPhysio_Core )
-#add_subdirectory( libHriPhysio_Dev )
-#add_subdirectory( libHriPhysio_Manager )
-#add_subdirectory( libHriPhysio_Processing )
-#add_subdirectory( libHriPhysio_Stream )
-#add_subdirectory( libHriPhysio_Helpers )
+set(TARGET_NAME physioStreamer)
+
+set(${TARGET_NAME}_SRC
+    src/physioStreamer.cpp
+)
+
+add_executable(
+    ${TARGET_NAME} 
+    ${${TARGET_NAME}_SRC}
+)
+
+target_link_libraries(
+    ${TARGET_NAME} 
+    HriPhysio
+)
+
+install(
+    TARGETS        ${TARGET_NAME}
+    DESTINATION    bin  
+)
 
 ############################################################

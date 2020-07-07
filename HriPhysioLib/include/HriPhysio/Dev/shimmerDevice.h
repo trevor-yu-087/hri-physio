@@ -10,14 +10,32 @@
  * ================================================================================
  */
 
-#include <HriPhysio/Core/streamerCore.h>
+#ifndef HRI_PHYSIO_DEV_SHIMMER_DEVICE_H
+#define HRI_PHYSIO_DEV_SHIMMER_DEVICE_H
 
-using namespace hriPhysio::Core;
+#include <iostream>
+#include <memory>
+#include <mutex>
 
-StreamerCore::StreamerCore() {
-    temp = 5; 
+#include <HriPhysio/helpers.h>
+
+namespace hriPhysio {
+    namespace Dev {
+        class ShimmerDevice;
+    }
 }
 
-void StreamerCore::tempfunc() {
-    temp = 10;
-}
+class hriPhysio::Dev::ShimmerDevice {
+
+private:
+    int temp;
+
+public:
+    ShimmerDevice();
+
+private:
+    void tempfunc();
+
+};
+
+#endif /* HRI_PHYSIO_DEV_SHIMMER_DEVICE_H */
