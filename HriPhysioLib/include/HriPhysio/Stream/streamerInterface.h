@@ -32,6 +32,8 @@ private:
 
 public:
     StreamerInterface();
+    
+    void publish();
 
 private:
     void tempfunc();

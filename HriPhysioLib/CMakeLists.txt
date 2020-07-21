@@ -11,7 +11,13 @@ set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
 # List of CPP (source) library files.
 
 set(${LIBRARY_TARGET_NAME}_SRC
-    #src/ringBuffer.cpp
+    src/biquadratic.cpp
+    src/butterworthBandNoch.cpp
+    src/butterworthBandPass.cpp
+    src/butterworthHighPass.cpp
+    src/butterworthLowPass.cpp
+    #src/deviceInterface.cpp
+    #src/physioManager.cpp
     src/helpers.cpp
 )
 
@@ -19,16 +25,26 @@ set(${LIBRARY_TARGET_NAME}_SRC
 # List of HPP (header) library files.
 
 set(${LIBRARY_TARGET_NAME}_HDR
+    
     include/HriPhysio/Core/ringBuffer.h
-    include/HriPhysio/Dev/deviceInterface.h
-    # #include/HriPhysio/Dev/polarDevice.h          # TODO: uncomment when implementing.
+    
+    # include/HriPhysio/Dev/deviceInterface.h
+    # include/HriPhysio/Dev/polarDevice.h          # TODO: uncomment when implementing.
     # include/HriPhysio/Dev/shimmerDevice.h
-    # #include/HriPhysio/Manager/physioManager.h    # TODO: uncomment when implementing.
-    # #include/HriPhysio/Processing/                # TODO: uncomment when implementing.
-    # #include/HriPhysio/Stream/ros/rosStreamer.h   # TODO: uncomment when implementing.
-    # include/HriPhysio/Stream/yarp/yarpStreamer.h
+    
+    # include/HriPhysio/Manager/physioManager.h    # TODO: uncomment when implementing.
+
+    include/HriPhysio/Processing/biquadratic.h
+    include/HriPhysio/Processing/butterworthBandNoch.h
+    include/HriPhysio/Processing/butterworthBandPass.h
+    include/HriPhysio/Processing/butterworthHighPass.h
+    include/HriPhysio/Processing/butterworthLowPass.h
+    
+    # include/HriPhysio/Stream/ros/rosStreamer.h   
+    # include/HriPhysio/Stream/yarp/yarpStreamer.h # TODO: uncomment when implementing.
     # include/HriPhysio/Stream/streamerInterface.h
-    # #include/HriPhysio/Stream/udpStreamer.h       # TODO: uncomment when implementing.
+    # include/HriPhysio/Stream/udpStreamer.h       
+    
     include/HriPhysio/helpers.h
 )
 

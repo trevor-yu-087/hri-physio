@@ -23,25 +23,37 @@
 namespace hriPhysio {
     namespace Dev {
         class DeviceInterface;
+
+        template <class T> 
+        class DeviceTemplate;
     }
 }
 
 class hriPhysio::Dev::DeviceInterface {
+public:
+    virtual ~DeviceInterface();
+    virtual void read()  = 0;
+    virtual void write() = 0;
+    virtual void deviceInit() = 0;
+};
+
+template <class T> 
+class hriPhysio::Dev::DeviceTemplate : public hriPhysio::Dev::DeviceInterface {
 protected:
     /* ============================================================================
     **  Member Variables that get Inherited by Child class.
     ** ============================================================================ */ 
 
     //-- The main container of the data members.
-    hriPhysio::Core::RingBuffer<int> buffer;
-    std::unique_ptr<int[]> intermediary;
+    hriPhysio::Core::RingBuffer<T> buffer;
 
+    //std::unique_ptr<int[]> intermediary;
 
 public:
     
-    DeviceInterface();
+    DeviceTemplate();
 
-    bool read();
+    virtual void read();
 
     virtual void deviceInit() = 0;
 

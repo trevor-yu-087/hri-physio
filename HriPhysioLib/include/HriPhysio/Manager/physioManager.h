@@ -13,9 +13,14 @@
 #ifndef HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H
 #define HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H
 
-#include <iostream>
+#include <atomic>
+#include <chrono>
 #include <memory>
 #include <mutex>
+#include <thread>
+
+#include <HriPhysio/Dev/deviceInterface.h>
+#include <HriPhysio/Stream/streamerInterface.h>
 
 #include <HriPhysio/helpers.h>
 
@@ -26,15 +31,31 @@ namespace hriPhysio {
 }
 
 class hriPhysio::Manager::PhysioManager {
-
 private:
-    int temp;
+    
+    hriPhysio::Dev::DeviceInterface* dev;
+    hriPhysio::Stream::StreamerInterface* stream;
+
+    double period_read;
+    double period_publish;
+    
+    std::atomic<bool> run_read;
+    std::atomic<bool> run_publish;
+
+    std::thread thread_read;
+    std::thread thread_publish;
+
 
 public:
     PhysioManager();
 
+    void start();
+    void step();
+    void stop();
+
 private:
-    void tempfunc();
+    void deviceLoop();
+    void streamLoop();
 
 };
 

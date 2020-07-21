@@ -15,12 +15,16 @@
 
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 #include <string>
 #include <vector>
 
 namespace hriPhysio {
 
     class InputParser;
+
+    const double pi    = 2 * acos(0.0); //-- High precision pi.
+    const double sqrt2 = sqrt(2.0);     //-- High precision sqrt(2.0)
 
     // TODO: REMOVE.
     void temp();
