@@ -53,7 +53,7 @@ public:
     
     DeviceTemplate();
 
-    void read();
+    virtual void read();
 
     virtual void deviceInit() = 0;
 

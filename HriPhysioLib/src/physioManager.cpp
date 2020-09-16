@@ -29,7 +29,6 @@ void PhysioManager::start() {
     if (!run_publish) {
         thread_publish = std::thread(&PhysioManager::streamLoop, this);
     }
-
 }
 
 
