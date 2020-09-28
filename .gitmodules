@@ -1,0 +1,3 @@
+[submodule "deps/labstreaminglayer"]
+	path = deps/labstreaminglayer
+	url = https://github.com/sccn/labstreaminglayer.git
