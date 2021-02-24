@@ -10,32 +10,10 @@
  * ================================================================================
  */
 
-#ifndef HRI_PHYSIO_DEV_POLAR_DEVICE_H
-#define HRI_PHYSIO_DEV_POLAR_DEVICE_H
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-#include <iostream>
-#include <memory>
-#include <mutex>
+#include <doctest.h>
 
-#include <HriPhysio/helpers.h>
-
-namespace hriPhysio {
-    namespace Dev {
-        class PolarDevice;
-    }
-}
-
-class hriPhysio::Dev::PolarDevice {
-
-private:
-    int temp;
-
-public:
-    PolarDevice();
-
-private:
-    void tempfunc();
-
-};
-
-#endif /* HRI_PHYSIO_DEV_POLAR_DEVICE_H */
+//--
+//-- The only purpose of this file is the #define.
+//--

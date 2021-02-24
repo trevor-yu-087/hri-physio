@@ -1,4 +1,4 @@
-# Copyright: (C) 2020, SIRRL Social and Intelligent Robotics Research Laboratory, University of Waterloo
+# Copyright: (C) 2021, SIRRL Social and Intelligent Robotics Research Laboratory, University of Waterloo
 # Authors: Austin Kothig <austin.kothig@uwaterloo.ca>
 # CopyPolicy: Released under the terms of the BSD 3-Clause License.
 
@@ -80,6 +80,9 @@ set( CMAKE_POSITION_INDEPENDENT_CODE ON )
 set( CMAKE_C_EXTENSIONS OFF )
 set( CMAKE_CXX_EXTENSIONS OFF )
 
+set(CMAKE_CXX_STANDARD          17)
+set(CMAKE_CXX_STANDARD_REQUIRED 17)
+
 
 # We use
 # - InstallBasicPackageFiles (http://robotology.github.io/ycm/gh-pages/v0.8/module/InstallBasicPackageFiles.html)
@@ -89,11 +92,16 @@ set( CMAKE_CXX_EXTENSIONS OFF )
 # See https://github.com/robotology/ycm/
 # YCM aquired from icub-common (apt)
 
-find_package( YCM REQUIRED )
+find_package( YCM QUIET )
+if( YCM_FOUND )
+    list(APPEND CMAKE_MODULE_PATH ${YCM_MODULE_PATH})
+else( YCM_FOUND )
+    list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+endif( YCM_FOUND )
 
 
 ############################################################
-######################### Options ##########################
+################## Options and Packages ####################
 ############################################################
 
 # Shared/Dynamic or Static library?
@@ -128,6 +136,12 @@ if( NOT CMAKE_CONFIGURATION_TYPES )
         set_property( CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "Release" )
     endif( )
 endif( )
+
+
+option(ENABLE_ROS   "Compile with support for ROS?"  OFF)
+option(ENABLE_YARP  "Compile with support for YARP?" OFF)
+
+find_package( yaml-cpp REQUIRED )
 
 
 ############################################################
@@ -177,14 +191,14 @@ endif( )
 
 ############################################################
 
-find_package(ICUBcontrib REQUIRED)
-
-list(APPEND CMAKE_MODULE_PATH ${ICUBCONTRIB_MODULE_PATH})
-
-#include(ICUBcontribOptions)
-include(ICUBcontribHelpers)
-
-icubcontrib_set_default_prefix()
+# find_package(ICUBcontrib REQUIRED)
+# 
+# list(APPEND CMAKE_MODULE_PATH ${ICUBCONTRIB_MODULE_PATH})
+# 
+# #include(ICUBcontribOptions)
+# include(ICUBcontribHelpers)
+# 
+# icubcontrib_set_default_prefix()
 
 
 ############################################################

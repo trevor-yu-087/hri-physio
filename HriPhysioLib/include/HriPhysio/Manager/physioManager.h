@@ -1,5 +1,5 @@
 /* ================================================================================
- * Copyright: (C) 2020, SIRRL Social and Intelligent Robotics Research Laboratory, 
+ * Copyright: (C) 2021, SIRRL Social and Intelligent Robotics Research Laboratory, 
  *     University of Waterloo, All rights reserved.
  * 
  * Authors: 
@@ -13,15 +13,20 @@
 #ifndef HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H
 #define HRI_PHYSIO_MANAGER_PHYSIO_MANAGER_H
 
+#include <iostream>
 #include <atomic>
 #include <chrono>
 #include <memory>
 #include <mutex>
 #include <thread>
 
-#include <HriPhysio/Dev/deviceInterface.h>
-#include <HriPhysio/Stream/streamerInterface.h>
+#include <yaml-cpp/yaml.h>
 
+#include <HriPhysio/Manager/threadManager.h>
+#include <HriPhysio/Stream/streamerInterface.h>
+#include <HriPhysio/Stream/csvStreamer.h>
+
+#include <HriPhysio/Core/ringBuffer.h>
 #include <HriPhysio/helpers.h>
 
 namespace hriPhysio {
@@ -30,32 +35,54 @@ namespace hriPhysio {
     }
 }
 
-class hriPhysio::Manager::PhysioManager {
+class hriPhysio::Manager::PhysioManager : public hriPhysio::Manager::ThreadManager {
 private:
     
-    hriPhysio::Dev::DeviceInterface* dev;
-    hriPhysio::Stream::StreamerInterface* stream;
+//
+//    double period_read;
+//    double period_publish;
+//    
+//    std::atomic<bool> run_read;
+//    std::atomic<bool> run_publish;
+//
+//    std::thread thread_read;
+//    std::thread thread_publish;
 
-    double period_read;
-    double period_publish;
+    std::string dtype;
+    std::size_t sampling_rate;
+    std::size_t input_frame;
+    std::size_t num_channels;
+    std::size_t output_frame;
+    std::size_t sample_overlap;
+    std::size_t buffer_length;
     
-    std::atomic<bool> run_read;
-    std::atomic<bool> run_publish;
+    bool        log_data;
+    std::string log_name;
 
-    std::thread thread_read;
-    std::thread thread_publish;
+    hriPhysio::Stream::StreamerInterface* stream_input;
+    hriPhysio::Stream::StreamerInterface* stream_output;
+    hriPhysio::Stream::CsvStreamer stream_logger;
+
+    hriPhysio::Core::RingBuffer<hriPhysio::varType> buffer;
+    hriPhysio::Core::RingBuffer<double> timestamps;
 
 
 public:
-    PhysioManager();
+    PhysioManager(hriPhysio::Stream::StreamerInterface* input, hriPhysio::Stream::StreamerInterface* output);
 
-    void start();
-    void step();
-    void stop();
+    ~PhysioManager();
+
+    void configure(const std::string yaml_file);
+
+    void interactive();
+
 
 private:
-    void deviceLoop();
-    void streamLoop();
+    bool threadInit();
+
+    void inputLoop();
+
+    void outputLoop();
 
 };
 
