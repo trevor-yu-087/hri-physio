@@ -13,6 +13,8 @@
 #include <iostream>
 #include <string>
 
+#include <ros/ros.h>
+
 #include <qtController.h>
 
 #include <HriPhysio/Manager/robotManager.h>
@@ -20,6 +22,10 @@
 #include <HriPhysio/helpers.h>
 
 int main (int argc, char **argv) {
+
+    //-- Init the ros node.
+    ros::init(argc, argv, "QtController", ros::init_options::AnonymousName);
+    
 
     //-- Init an argument parser.
     hriPhysio::ArgParser args(argc, argv);
@@ -41,13 +47,19 @@ int main (int argc, char **argv) {
     //-- Start the manager.
     manager.start();
 
+
     //-- Run in interactive mode if enabled.
     if (interactive_mode) {
         manager.interactive();
     }
 
+    
     //-- Wait for everything to finish.
     manager.wait();
+
+
+    //-- Shut down nodes.
+    ros::shutdown();
     
     return 0;
 }

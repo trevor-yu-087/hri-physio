@@ -36,6 +36,12 @@ std::string RobotInterface::getName() const {
 }
 
 
+void RobotInterface::robotLoop() {
+    //-- empty.
+    return;
+}
+
+
 bool RobotInterface::setPerphState(const peripheral perph, const std::vector<double>& pos) {
     warning("setPerphState");
     return false;
@@ -72,13 +78,40 @@ bool RobotInterface::getEmotionState(std::string& emotion) {
 }
 
 
+bool RobotInterface::addGesture(const std::string gesture, const double speed/*=1.0*/) {
+    warning("addGesture");
+    return false;
+}
+
+
 bool RobotInterface::addSpeech(const std::string phrase) {
     warning("addSpeech");
     return false;
 }
 
 
+bool RobotInterface::setSpeechConfig(const std::string config) {
+    warning("setSpeechConfig");
+    return false;
+}
+
+bool RobotInterface::setVolume(const double) {
+    warning("setVolume");
+    return false;
+}
+
+
 bool RobotInterface::addAudioFile(const std::string filename, const size_t channel/*=-1*/) {
     warning("addAudioFile");
+    return false;
+}
+
+bool RobotInterface::addVideoFile(const std::string filename) {
+    warning("addVideoFile");
+    return false;
+}
+
+bool RobotInterface::getRobotCommand(std::string& command) {
+    warning("getRobotCommand");
     return false;
 }

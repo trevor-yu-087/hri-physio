@@ -18,6 +18,7 @@
 #include <cmath>
 #include <sstream>
 #include <string>
+#include <stdlib.h>
 #include <variant>
 #include <vector>
 
@@ -33,7 +34,7 @@ namespace hriPhysio {
     **  Initialize a common variant type to support relevant data types.
     ** ============================================================================ */
     using varType = std::variant<char,int16_t,int32_t,int64_t,float,double>;
-    enum  varTag { CHAR, INT16, INT32, INT64, LONGLONG, FLOAT, DOUBLE };
+    enum  varTag { CHAR, INT16, INT32, INT64, LONGLONG, FLOAT, DOUBLE, STRING };
     
     struct printVisitor {
         void operator()(char    v ) const { std::cout << "char("    << v << ")"; }
@@ -50,16 +51,48 @@ namespace hriPhysio {
     ** ============================================================================ */
     const double pi    = 2 * acos(0.0); //-- High precision pi.
     const double sqrt2 = sqrt(2.0);     //-- High precision sqrt(2.0)
+    
+    template<typename T>
+    T mean(const std::vector<T>& vec) {
+        
+        T ret;
+        for (size_t idx = 0; idx < vec.size(); ++idx) {
+            ret += vec[idx];
+        }
+    
+        if (vec.size() > 0) {
+            ret /= (T) vec.size();
+        }
+    
+        return ret;
+    };
 
 
     /* ============================================================================
     **  Methods for Strings.
     ** ============================================================================ */
-    std::vector< std::string > parseString(std::string& str);
+    std::vector< std::string > parseString(const std::string& str);
     std::vector< double > toVecDouble(const std::vector< std::string >& source, size_t idx=0);
     std::string combineString(const std::vector< std::string >& source, size_t idx=0);
     void toLower(std::string& str);
     void toUpper(std::string& str);
+
+
+    /* ============================================================================
+    **  Other Methods.
+    ** ============================================================================ */
+    
+    template<typename T>
+    T chooseRandom(const std::vector<T>& vec) {
+        
+        T ret;
+        if (vec.size() > 0) { // if vec is empty, return default T.
+            size_t idx = rand() % vec.size();
+            ret = vec[idx];
+        }
+
+        return ret;
+    }
 }
 
 

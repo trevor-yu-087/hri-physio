@@ -20,6 +20,12 @@
 #include <vector>
 
 #include <ros/ros.h>
+#include <std_msgs/Int8MultiArray.h>
+#include <std_msgs/Int16MultiArray.h>
+#include <std_msgs/Int32MultiArray.h>
+#include <std_msgs/Int64MultiArray.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/String.h>
 
 #include <HriPhysio/Stream/streamerInterface.h>
@@ -35,7 +41,8 @@ namespace hriPhysio {
 class hriPhysio::Stream::RosStreamer : public hriPhysio::Stream::StreamerInterface {
 
 private:
-    int temp;
+    ros::Subscriber sub;
+    ros::Publisher  pub;
 
 public:
     RosStreamer();
@@ -48,12 +55,16 @@ public:
 
     bool openOutputStream();
 
-    void publish(const std::vector<hriPhysio::varType>&  buff, const std::vector<double>* timestamps=nullptr);
+    // General data streams.
+    void publish(const std::vector<hriPhysio::varType>&  buff, const std::vector<double>* timestamps = nullptr);
+    void receive(std::vector<hriPhysio::varType>& buff, std::vector<double>* timestamps = nullptr);
     
-    void receive(std::vector<hriPhysio::varType>& buff, std::vector<double>* timestamps=nullptr);
+    // Special string stream.
+    void publish(const std::string&  buff, const double* timestamps = nullptr);
+    void receive(std::string& buff, double* timestamps = nullptr);
 
 private:
-    template<typename T>
+    template<typename T, typename U>
     void pushStream(const std::vector<hriPhysio::varType>&  buff, const std::vector<double>* timestamps);
 
     template<typename T>

@@ -20,6 +20,15 @@ set(${TARGET_NAME}_SRC
 
 set(${TARGET_NAME}_HDR
     include/qtController.h
+    include/qt_services/gesture_play.h
+    include/qt_services/gesture_playResponse.h
+    include/qt_services/gesture_playRequest.h
+    include/qt_services/setting_setVolume.h
+    include/qt_services/setting_setVolumeRequest.h
+    include/qt_services/setting_setVolumeResponse.h
+    include/qt_services/speech_config.h
+    include/qt_services/speech_configRequest.h
+    include/qt_services/speech_configResponse.h
 )
 
 add_executable(
@@ -39,7 +48,6 @@ target_link_libraries(
     -I/opt/ros/$ENV{ROS_DISTRO}/include -L/opt/ros/$ENV{ROS_DISTRO}/lib
     -lroscpp -lrostime -lrosconsole -lroscpp_serialization
 )
-
 
 install(
     TARGETS        ${TARGET_NAME}

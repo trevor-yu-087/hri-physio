@@ -41,6 +41,8 @@ public:
     std::string getName() const;
 
     virtual bool configure(int argc, char **argv) = 0;
+
+    virtual void robotLoop();
     
     enum peripheral { HEAD, RIGHTARM, LEFTARM, RIGHTLEG, LEFTLEG };
     
@@ -56,9 +58,19 @@ public:
 
     virtual bool getEmotionState(std::string& emotion);
 
+    virtual bool addGesture(const std::string gesture, const double speed=1.0);
+
     virtual bool addSpeech(const std::string phrase);
 
+    virtual bool setSpeechConfig(const std::string config);
+
+    virtual bool setVolume(const double percent);
+
     virtual bool addAudioFile(const std::string filename, const size_t channel=-1);
+
+    virtual bool addVideoFile(const std::string filename);
+
+    virtual bool getRobotCommand(std::string& command);
 
 private:
     void warning(std::string func) {
