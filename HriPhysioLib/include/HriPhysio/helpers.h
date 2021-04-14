@@ -47,28 +47,6 @@ namespace hriPhysio {
 
 
     /* ============================================================================
-    **  Methods for Math.
-    ** ============================================================================ */
-    const double pi    = 2 * acos(0.0); //-- High precision pi.
-    const double sqrt2 = sqrt(2.0);     //-- High precision sqrt(2.0)
-    
-    template<typename T>
-    T mean(const std::vector<T>& vec) {
-        
-        T ret;
-        for (size_t idx = 0; idx < vec.size(); ++idx) {
-            ret += vec[idx];
-        }
-    
-        if (vec.size() > 0) {
-            ret /= (T) vec.size();
-        }
-    
-        return ret;
-    };
-
-
-    /* ============================================================================
     **  Methods for Strings.
     ** ============================================================================ */
     std::vector< std::string > parseString(const std::string& str);

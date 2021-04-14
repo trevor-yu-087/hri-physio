@@ -17,6 +17,7 @@
 #include <memory>
 
 #include <HriPhysio/Processing/biquadratic.h>
+#include <HriPhysio/Processing/math.h>
 
 #include <HriPhysio/helpers.h>
 

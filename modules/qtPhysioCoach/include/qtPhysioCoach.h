@@ -29,6 +29,7 @@
 #include <std_msgs/Float64MultiArray.h>
 
 #include <HriPhysio/Core/ringBuffer.h>
+#include <HriPhysio/Processing/math.h>
 #include <HriPhysio/Manager/threadManager.h>
 #include <HriPhysio/helpers.h>
 

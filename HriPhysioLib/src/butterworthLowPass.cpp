@@ -27,13 +27,13 @@ void ButterworthLowPass::updateCoefficients(const double freq) {
     double c, cc;
     
     //-- Compute the coeff for the given center frequency.
-    c  = 1.0 / tan(hriPhysio::pi * freq / sampling_rate);
+    c  = 1.0 / tan(hriPhysio::Processing::pi * freq / sampling_rate);
     cc = c * c;
-    a0 = 1.0 / (1.0 + (hriPhysio::sqrt2 * c) + cc);
+    a0 = 1.0 / (1.0 + (hriPhysio::Processing::sqrt2 * c) + cc);
     a1 = a0 * 2.0;
     a2 = a0;
     b1 = a0 * 2.0 * (1.0 - cc);
-    b2 = a0 * (1.0 - (hriPhysio::sqrt2 * c) + cc);
+    b2 = a0 * (1.0 - (hriPhysio::Processing::sqrt2 * c) + cc);
 
     //-- Cache this center frequency, 
     //-- so that it is not recomputed.
