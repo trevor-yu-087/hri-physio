@@ -4,10 +4,10 @@
 
 cmake_minimum_required( VERSION 3.12 )
 
-set(TARGET_NAME physioStreamer)
+set(TARGET_NAME physioReceiver)
 
 set(${TARGET_NAME}_SRC
-    src/physioStreamer.cpp
+    src/main.cpp
 )
 
 if( ENABLE_ROS )

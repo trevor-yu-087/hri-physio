@@ -433,7 +433,7 @@ void QtPhysioCoach::calibrate() {
         inbox.dequeue(HRbuffer.data(), inbox.size());
         lock.unlock();
 
-        HRresting = hriPhysio::mean(HRbuffer);
+        HRresting = hriPhysio::Processing::mean(HRbuffer);
     }
     
     // Tanaka, H., Monahan, K. D., & Seals, D. R. (2001). 
@@ -533,7 +533,7 @@ void QtPhysioCoach::runExercise(const std::string typeExercise, const double sec
 
             
             bool changed = false;
-            double HRexercise = hriPhysio::mean(HRbuffer);
+            double HRexercise = hriPhysio::Processing::mean(HRbuffer);
 
             if (HRexercise < HRR_40) {
                 //Increase the speed!!
@@ -591,7 +591,7 @@ void QtPhysioCoach::runExercise(const std::string typeExercise, const double sec
                 inbox.dequeue(HRbuffer.data(), inbox.size(), inbox.size());
                 lock.unlock();
 
-                double HRexercise = hriPhysio::mean(HRbuffer);
+                double HRexercise = hriPhysio::Processing::mean(HRbuffer);
                 msg = fmt::format("set speech {}", fmt::format(
                     "Your heart-rate is {:.1f}. Keep it up!", 
                     HRexercise

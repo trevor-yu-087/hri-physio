@@ -51,6 +51,7 @@ set(${LIBRARY_TARGET_NAME}_HDR
     include/HriPhysio/Processing/butterworthBandPass.h
     include/HriPhysio/Processing/butterworthHighPass.h
     include/HriPhysio/Processing/butterworthLowPass.h
+    include/HriPhysio/Processing/math.h
 
     # SOCIAL
     include/HriPhysio/Social/robotInterface.h
