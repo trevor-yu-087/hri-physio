@@ -4,14 +4,16 @@
 
 cmake_minimum_required( VERSION 3.12 )
 
-set(TEST_TARGET_NAME test_libHriPhysio_Helpers)
+set(TEST_TARGET_NAME test_libHriPhysio_Processing)
 
 # Expose doctest.h to cmake.
 include_directories(../)
 
 set(${TEST_TARGET_NAME}_SRC
     docTestDefine.cpp
-    helpersTest.cpp
+    processingHelperFunctions.cpp
+    hilbertTransformTest.cpp
+    spectrogramTest.cpp
 )
 
 add_executable(
