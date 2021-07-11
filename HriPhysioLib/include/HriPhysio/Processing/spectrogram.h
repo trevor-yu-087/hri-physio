@@ -16,7 +16,7 @@
 #include <cmath>
 #include <memory>
 
-#include <HriPhysio/Processing/PocketFFT/pocketfft.h>
+#include <PocketFFT/pocketfft.h>
 #include <HriPhysio/Processing/math.h>
 
 #include <HriPhysio/helpers.h>

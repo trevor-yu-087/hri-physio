@@ -70,7 +70,7 @@ set(${LIBRARY_TARGET_NAME}_HDR
     include/HriPhysio/helpers.h
 
     # Additional Library Headers
-    include/HriPhysio/Processing/PocketFFT/pocketfft.h
+    include/PocketFFT/pocketfft.h
 )
 
 ############################################################
