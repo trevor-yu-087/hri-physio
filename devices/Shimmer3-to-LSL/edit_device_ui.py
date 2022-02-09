@@ -96,8 +96,6 @@ class EditDeviceWindow(QtWidgets.QDialog):
         self.stream_list.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.stream_list.itemClicked.connect(self.update_check_state)
 
-        # self.show() # Show the GUI
-
     @staticmethod
     def update_check_state(item):
         curr_state = item.checkState()
