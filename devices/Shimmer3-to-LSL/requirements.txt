@@ -1,3 +1,2 @@
 pylsl
 PyQt5
-python=3.6

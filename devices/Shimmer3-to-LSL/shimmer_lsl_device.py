@@ -2,9 +2,9 @@ import time
 
 from serial import Serial
 from serial.tools import list_ports
-from pyshimmer import ShimmerBluetooth, DEFAULT_BAUDRATE
+from pyshimmer.bluetooth.bt_api import ShimmerBluetooth
 from serial.serialutil import SerialTimeoutException
-from pyshimmer.device import *
+from pyshimmer.device import DEFAULT_BAUDRATE, ChDataTypeAssignment, SensorChannelAssignment
 
 from functools import partial
 import itertools
